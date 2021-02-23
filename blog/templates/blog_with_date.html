@@ -1,0 +1,5 @@
+{% extends 'blog_list.html' %}
+
+{% block blog_list_title %}
+    日期归档：{{ blog_date }}({{ page_of_blogs.paginator.count }} )
+{% endblock %}

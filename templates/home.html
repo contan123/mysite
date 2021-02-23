@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    我的网站|首页
+{% endblock %}
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!--要重新 load static-->
+{% endblock %}
+{% block content %}
+
+    <div class="bg-light p-4 welcome">
+        <h1>欢迎来到我的网站</h1>
+        <p>兴趣使然</p>
+
+    </div>
+
+
+
+
+
+<div class="container">
+    <a href="{% url 'blog_list' %}" style="text-decoration: none;">
+            <div class="card-blog-mask" style="" >
+                <h3>博客</h3>
+            </div>
+    </a>
+
+    <a href="" style="text-decoration: none;">
+            <div class="card-more-mask" >
+                <h3>更多</h3>
+            </div>
+    </a>
+    </div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block nav_home_active %}
+    active
+{% endblock %}
+

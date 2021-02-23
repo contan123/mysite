@@ -1,0 +1,90 @@
+h3.home-content{
+            font-size: 222%;
+            text-align: center;
+            margin-top: 4em;
+            margin-bottom: 2em;
+        }
+
+div.hot-data{
+    text-align: center;
+    margin-top: 2em;
+}
+div.hot-data ul li{
+    list-style-type: none;
+}
+
+div.chart{
+    text-align: center;
+}
+
+div.welcome{
+    position: relative;
+    top: -2em;
+    text-align: center;
+    color: #e4e4e4;
+    font-family: 幼圆;
+    background-image: url("/media/backgound/87846087_p0.png");
+    background-size: 100%;
+}
+
+ div.card-blog-mask{
+     text-align: center;
+     background-image: url('/media/backgound/ss-tiny-wallhaven-6k3oox.jpg');
+     background-size: 100%;
+     width: 90%;
+     height:240px;
+     border-radius: 10px;
+     margin-top: 1em;
+     margin-left: 5%;
+     font-family: 幼圆;
+     background-size:cover;
+ }
+
+ div.card-blog-mask:hover{
+     box-shadow: 5px 5px 5px rgba(140,140,140,0.71);
+     cursor: pointer;
+     width: 82%;
+     height:220px;
+     margin-left: 9%;
+     transition: all 0.2s;
+ }
+ div.card-blog-mask h3{
+     font-size: 3em;
+     font-weight: 400;
+     color: #fff;
+     margin-bottom: .75rem;
+     min-height: 40px;
+     padding-top: 80px;
+     border-radius: 4px;
+ }
+
+  div.card-more-mask{
+      text-align: center;
+      background-image: url('/media/backgound/87849243_p0.png');
+      background-size: 100%;
+      width: 90%;
+      height:240px;
+      border-radius: 10px;
+      margin-top: 1em;
+      margin-left: 5%;
+      font-family: 幼圆;
+      background-size:cover;
+ }
+
+ div.card-more-mask:hover{
+     box-shadow: 5px 5px 5px rgba(140,140,140,0.71);
+     cursor: pointer;
+     width: 82%;
+     height:220px;
+     margin-left: 9%;
+     transition: all 0.2s;
+ }
+ div.card-more-mask h3{
+     font-size: 3em;
+     font-weight: 400;
+     color: #fff;
+     margin-bottom: .75rem;
+     min-height: 40px;
+     padding-top: 80px;
+     border-radius: 4px;
+ }

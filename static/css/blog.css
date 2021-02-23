@@ -1,0 +1,150 @@
+
+
+div.side-card spawn{
+    margin-bottom: 5px;
+    padding: 5px;
+    color: rgba(76,76,76,0.71);
+    background-color: rgba(140,140,140,0.2);
+    font-size: 14px;
+    padding-right: 10px;
+    display : inline-block ;
+    white-space : nowrap ;
+    border-radius: 10px;
+}
+ul.hot-data{
+    padding-left: 10px;
+}
+
+ul.hot-data li{
+    color: #0f0f0f;
+    list-style-type: none;
+}
+
+ul.blog-info-description{
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+ul.blog-info-description li{
+    display: inline-block;
+    margin-right: 2em;
+
+}
+
+div.blog:not(:last-child) {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #eee;
+    border-radius: 10px;
+    padding-left: 2em;
+
+}
+div.blog{
+    background-color: rgba(237,237,237,0.71);
+    border-radius: 10px;
+    padding-left: 2em;
+}
+
+div.blog-detail-content{
+    text-indent: 2em;
+    height: 100%;
+    width: 100%;
+    margin-top: 1em;
+}
+
+div.blog h3{
+    margin-top: 0.5em;
+    text-decoration: none;
+    text-align: center;
+    color: #0f0f0f;
+}
+
+ul.blog-detail-info{
+    padding-left: 0;
+    display : inline ;
+    white-space : nowrap ;
+    float: bottom;
+}
+ul.blog-detail-info li{
+    color: rgba(140,140,140,1);
+    font-size: 14px;
+    padding-right: 10px;
+    display : inline-block ;
+    white-space : nowrap ;
+}
+div.sidecard{
+    position: fixed;
+}
+p.blog-info{
+    margin-bottom: 0px;
+}
+div.blog-content-card{
+    padding:2em;
+    padding-left: 4em;
+    padding-right: 4em;
+    margin-bottom: 4em;
+    box-shadow: 1px 1px 5px rgba(140,140,140,0.71);
+}
+div.blog-content{
+    text-indent: 2em;
+}
+
+div.blog-pre-next{
+    margin-top: 1em;
+}
+
+div.blog-list-content{
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+textarea.form-text-area{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 1em;
+    margin-top: 0;
+    resize:none;
+}
+
+img.round_icon{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    float: left;
+    margin-right: 1em;
+}
+
+img.round_icon_little{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    float: left;
+    margin-right: 1em;
+    padding: 0;
+}
+
+ p.comment_user_name{
+     margin-top: -1em;
+     top:10em;
+     font-size: 80%;
+     margin-bottom: 0;
+ }
+
+ ul.user_info{
+     list-style: none;
+ }
+
+
+
+ div.blog-list-card{
+     border:none;
+     background-color: rgba(244,244,244,0.71);
+ }

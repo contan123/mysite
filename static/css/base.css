@@ -1,0 +1,13 @@
+  *{
+        margin: 0;
+        padding: 0;
+    }
+  body
+  {
+      margin-top: 80px !important;
+      background-color: rgba(240,240,240,0.71)!important;
+  }
+
+ div.close-button{
+     text-align: right;
+ }

@@ -1,0 +1,5 @@
+{% extends 'blog_list.html' %}
+
+{% block blog_list_title %}
+    分类：{{ blog_type }} (共有{{ page_of_blogs.paginator.count }} 篇)
+{% endblock %}
