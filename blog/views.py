@@ -43,6 +43,11 @@ def blog_detail(request,blog_pk):
     context['next_blog'] = Blog.objects.filter(created_time__lt=blog.created_time).first()
     context['comments'] = comments
     context['comment_form'] = CommentForm(initial={'content_type':blog_content_type.model,'object_id':blog_pk})
+    context['blog_types'] = BlogType.objects.annotate(blog_count=Count('blog'))  # BlogType关联Blog 计数Blog
+    dates = Blog.objects.dates('created_time', 'month', order='DESC')
+    dates_count = [Blog.objects.filter(created_time__year=i.year, created_time__month=i.month).count() for i in dates]
+    context['hot_data'] = get_month_hot_data()
+    context['blog_dates'] = [(dates[i], dates_count[i]) for i in range(len(dates_count))]
     response = render(request, 'blog_detail.html', context)
     response.set_cookie(read_cookie_key,'True',max_age=60)
     return response

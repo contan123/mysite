@@ -1,6 +1,6 @@
 
 
-div.side-card spawn{
+div.side-card span{
     margin-bottom: 5px;
     padding: 5px;
     color: rgba(76,76,76,0.71);
@@ -25,24 +25,21 @@ ul.blog-info-description{
     margin-bottom: 2em;
 }
 ul.blog-info-description li{
-    display: inline-block;
-    margin-right: 2em;
+    color: rgba(140,140,140,1);
+    font-size: 14px;
+    padding-right: 10px;
+    display : inline-block ;
+    white-space : nowrap ;
 
 }
 
-div.blog:not(:last-child) {
-    margin-top: 1em;
+
+div.blog{
+    background-color: rgba(237,237,237,0.71);
     margin-bottom: 2em;
     padding-bottom: 1em;
     border-bottom: 1px solid #eee;
     border-radius: 10px;
-    padding-left: 2em;
-
-}
-div.blog{
-    background-color: rgba(237,237,237,0.71);
-    border-radius: 10px;
-    padding-left: 2em;
 }
 
 div.blog-detail-content{
@@ -64,6 +61,7 @@ ul.blog-detail-info{
     display : inline ;
     white-space : nowrap ;
     float: bottom;
+    margin-left: 2em;
 }
 ul.blog-detail-info li{
     color: rgba(140,140,140,1);
@@ -83,11 +81,10 @@ div.blog-content-card{
     padding-left: 4em;
     padding-right: 4em;
     margin-bottom: 4em;
+    margin-top: 4em;
     box-shadow: 1px 1px 5px rgba(140,140,140,0.71);
 }
-div.blog-content{
-    text-indent: 2em;
-}
+
 
 div.blog-pre-next{
     margin-top: 1em;
@@ -146,5 +143,18 @@ img.round_icon_little{
 
  div.blog-list-card{
      border:none;
-     background-color: rgba(244,244,244,0.71);
+     margin-top: 20px;
+     background-color: rgba(250,250,250,0);
+ }
+
+ .filp-button{
+     background-color: rgba(241,242,244,0.71);
+     border-radius: 20px;
+     color: #0f0f0f;
+     box-shadow: 0px 0px 2px #0f0f0f ;
+     transition:0.4s;
+ }
+
+ .filp-button:hover{
+     background-color: #e4e4e4;
  }

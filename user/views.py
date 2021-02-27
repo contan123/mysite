@@ -10,6 +10,8 @@ from django.contrib import messages
 from .models import Profile
 from .forms import ChangeNicknameFrom,BindEmailForm
 from django.core.mail import send_mail
+from .forms import UserDetailForm
+from django.contrib.auth.decorators import login_required
 def login(request):
     username = request.POST.get('username','')
     password = request.POST.get('password','')
@@ -152,3 +154,27 @@ def send_verification_code(request):
     else:
         data['status'] = 'ERROR'
     return JsonResponse(data)
+
+@login_required
+def change_avater(request):
+    redirect_to = request.GET.get('from', reverse('home'))
+    # post请求 表明是在修改用户资料
+    if request.method == 'POST':
+        form = UserDetailForm(request.POST, request.FILES)
+        if form.is_valid():
+            if 'avatar' in request.FILES:
+                request.user.profile.avatar.delete()
+                request.user.profile.avatar = form.cleaned_data["avatar"]
+                request.user.profile.save()
+                return redirect(redirect_to)
+    # 如果是get请求，则使用user生成表单
+    else:
+        form = UserDetailForm(instance=request.user)
+    context = {}
+    context['form'] = form
+    context['page_title'] = '更改头像'
+    context['form_title'] = '更改头像'
+    context['submit_text'] = '更改'
+    context['return_back_url'] = redirect_to
+    return render(request, 'form.html', context)
+

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-
+from django.forms import ModelForm
+from .models import Profile
 class ChangeNicknameFrom(forms.Form):
     nickname_new = forms.CharField(
         label='新的昵称',
@@ -80,3 +81,12 @@ class BindEmailForm(forms.Form):
         if verification_code == '':
             raise forms.ValidationError('验证码不能为空')
         return verification_code
+
+class UserDetailForm(ModelForm):
+    class Meta:
+       # 关联的数据库模型，这里是用户模型
+        model = Profile
+       # 前端显示、可以修改的字段
+        fields = ('avatar',)
+
+

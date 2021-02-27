@@ -30,4 +30,3 @@ class Blog(models.Model,ReadNumExpandMethod):
 
     class Meta:     #分页排序
         ordering = ['-created_time']
-

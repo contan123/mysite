@@ -5,16 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 
     <link rel="stylesheet" href="/static/css/base.css"><link rel="stylesheet" href="/static/css/base.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
-
-
-    <!--或者 在开头使用load static标签
-        href="% static 'css/base.css'%"-->
 
 
 
@@ -26,65 +21,71 @@
 </head>
 
 <body>
-
-
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark " style="box-shadow: 1px 5px 5px rgba(140,140,140,0.71)">
-        <div class="container-fluid">
-            <a class="navbar-brand col-1" href="{% url 'home' %}" >个人小站</a>
-            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="切换导航">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse" id="navbarCollapse" style="">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0 ">
-                    <li class="nav-item">
-                        <a class="nav-link {% block nav_home_active %}{% endblock %}" aria-current="true" href="{% url 'home' %}">首页</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link {% block nav_blog_list_active %}{% endblock %}" href="{% url 'blog_list' %}">博客</a>
-                    </li>
-                <!-- Button trigger modal -->
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav avbar-right ">
-                    <div class="d-flex">
-                        {% if user.is_authenticated %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ request.user.get_nickname  }}
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{% url 'user_info' %}">个人资料</a></li>
-                                    {% if user.is_staff or user.is_superuser %}
-                                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">后台管理</a></li>
-                                    {% endif %}
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'logout' %}">注销</a></li>
-                                </ul>
-                            </li>
-                        {% else %}
-                            <button type="button" class="btn btn-dark" data-bs-backdrop='false' data-bs-toggle="modal" data-bs-target="#loginModal" >
-                                登录
-                            </button>
-                            <button type="button" class="btn btn-dark" data-bs-backdrop='false' data-bs-toggle="modal" data-bs-target="#registerModal" >
-                                <div>注册</div>
-                            </button>
-                        {% endif %}
-
+     <nav class="navbar navbar-leftside navbar-expand d-flex flex-column" id="sidebar">
+         <div href="#" class="navbar-brand m-0 mt-2">
+             <div class=" font-weight-bold">
+                 <a href="{% url 'user_info' %}">
+                    {% if user.is_authenticated %}
+                        <img src="{{ request.user.get_avatar }}" alt="" class="img-fluid rounded-circle my-1
+                       p-1  d-md-block shadow mx-2" style="width: 233px;height: 233px"/>
+                    {% else %}
+                        <img src="/media/default/unlogin.png" alt="" class="img-fluid rounded-circle my-1
+                       p-1  d-md-block shadow mx-2" style="width: 233px;height: 233px"/>
+                    {% endif %}
+                </a>
+                     <div class="d-flex">
+                         {% if user.is_authenticated %}
+                             <div class="nav-item dropdown w-100 text-center mt-4" >
+                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                     {{ request.user.get_nickname  }}
+                                 </a>
+                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                     <li><a class="dropdown-item" href="{% url 'user_info' %}">个人资料</a></li>
+                                     {% if user.is_staff or user.is_superuser %}<li><a class="dropdown-item" href="{% url 'admin:index' %}">后台管理</a></li>
+                                     {% endif %}
+                                     <li><hr class="dropdown-divider"></li>
+                                     <li><a class="dropdown-item" href="{% url 'logout' %}">注销</a></li>
+                                 </ul>
+                             </div>
+                            {% else %}
+                                <div class="w-100 text-center mt-4">
+                                <button type="button" class="btn btn-dark"  data-bs-toggle="modal" data-bs-target="#loginModal" >
+                                    登录
+                                </button>
+                                <button type="button" class="btn btn-dark"  data-bs-toggle="modal" data-bs-target="#registerModal" >
+                                    <div>注册</div>
+                                </button>
+                                </div>
+                            {% endif %}
                     </div>
-
-                </ul>
-
             </div>
-        </div>
+         </div>
+         <ul class="navbar-nav d-flex flex-column mt-5 w-100 text-center">
+             <li class="nav-item w-100">
+                 <a class="nav-link" aria-current="true" href="{% url 'home' %}">首页</a>
+             </li>
+             <li class="nav-item w-100">
+                 <a class="nav-link" href="{% url 'blog_list' %}">博客</a>
+             </li>
+         </ul>
 
 
 
 
-    <!-- login Modal -->
-    <div class="modal fade " id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+
+
+
+
+
+
+
+     </nav>
+
+      <!-- login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog " style="top:30%">
-            <div class="modal-content w-auto h-auto" style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);">
-                <div class="close-button"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+            <div class="modal-content w-auto h-auto" style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);z-index: 9999;">
+                <div class="close-button"><button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
                 <div class="modal-body text-center pt-1 px-5">
                     <div class="text-center">
                     <form action="{% url 'login' %}" method="post" >
@@ -104,10 +105,10 @@
     </div>
 
     <!-- register Modal -->
-    <div class="modal fade " id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-dialog " style="top:40%">
             <div class="modal-content w-auto h-auto" style="position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);">
-                <div class="close-button"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="close-button"><button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
                 <div class="modal-body text-center pt-1 px-5">
                     <div class="text-center">
                     <form action="{% url 'register' %}" method="post" >
@@ -134,17 +135,19 @@
         </div>
     </div>
 
-    </nav>
-
-
-
+    <div class="w-100 my-menu active-cont" id="div-menu-btn">
+        <button class="btn my-4" id="menu-btn">Menu</button>
+    </div>
     {% block content %}{% endblock %}
 
 
 
 
+
+
+
     <!-- Modal -->
-    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal fade" id="messageModal"  tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content w-auto" style="position: absolute;left: 50%;top: 20%;transform: translate(-50%,-50%);">
                 <div class="modal-body text-center" >
@@ -157,6 +160,7 @@
         </div>
     </div>
 
+     <foot></foot>
     {% if messages  %}
     <script>
          {% for msg in messages %}
@@ -167,9 +171,87 @@
     </script>
     {% endif %}
     {% block script_extend %} {% endblock %}
+     <script type="text/javascript">
+         function hasClass(element, cls) {
+             return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+         }
+
+         var menu_btn=document.querySelector("#menu-btn");
+         var sidebar=document.querySelector("#sidebar");
+         var div_menu_btn=document.querySelector("#div-menu-btn");
+         var blog_list_card=document.querySelector("#blog-move");
+         var right_sidebar=document.querySelector("#rightsidebar");
+
+         window.onload=function () {
+             var t = blog_list_card.getBoundingClientRect().left;
+             if(t < 250){
+                 sidebar.classList.add("active-nav");
+                 div_menu_btn.classList.remove("active-cont");
+             }
+             else if(hasClass(sidebar,"active-nav")&& t>250){
+                 sidebar.classList.toggle("active-nav");
+                 div_menu_btn.classList.toggle("active-cont");
+             }
+
+             if(right_sidebar){
+                 if(right_sidebar.getBoundingClientRect().left<1400) {
+                     right_sidebar.classList.add("visually-hidden")
+                 }
+                 else if(right_sidebar.getBoundingClientRect().left>1600){
+                     right_sidebar.classList.remove("visually-hidden")
+                 }
+             }
+         };
+
+         window.addEventListener('resize',function(){
+             var target = this;
+             if (target.resizeFlag) {
+                 clearTimeout(target.resizeFlag);
+             };
+
+             target.resizeFlag = setTimeout(function() {
+                 callback();
+                 target.resizeFlag = null;
+             }, 10000);
+             //防止检测多次导致抽搐
+
+             var t = blog_list_card.getBoundingClientRect().left;
+             if(t < 250){
+                 sidebar.classList.add("active-nav");
+                 div_menu_btn.classList.remove("active-cont");
+             }
+             else if(hasClass(sidebar,"active-nav")&& t>250){
+                 sidebar.classList.toggle("active-nav");
+                 div_menu_btn.classList.toggle("active-cont");
+             }
+             if(right_sidebar){
+                 if(right_sidebar.getBoundingClientRect().left<1400) {
+                     right_sidebar.classList.add("visually-hidden")
+                 }
+                 else if(right_sidebar.getBoundingClientRect().left>1600){
+                     right_sidebar.classList.remove("visually-hidden")
+                 }
+             }
+         });
+
+
+         menu_btn.addEventListener("click",()=>{
+             sidebar.classList.toggle("active-nav");
+             div_menu_btn.classList.toggle("active-cont");
+             if(blog_list_card.offsetLeft-250<0) {
+                 blog_list_card.classList.toggle("active-cont");
+             }
+             else if(hasClass(blog_list_card,"active-cont")){
+                 blog_list_card.classList.toggle("active-cont");
+             }
+
+         })
+     </script>
+
 
 </body>
 <script type="text/javascript">
+
         $("#send_code").click(function () {
             var email = $(id_email).val();
             if(email==''){
@@ -189,23 +271,22 @@
                         alert(data['type']);
                     }
                     else{
-                        $("#error_tip").text('')
-                        alert('邮件已发送')
-
-                        $(this).addClass('disabled');
-                        $(this).attr('disabled',true);
+                        $("#error_tip").text('');
+                        alert('邮件已发送');
+                        $("#send_code").addClass('disabled');
+                        $("#send_code").attr('disabled',true);
                         var time = 30;
-                        $(this).text(time + 's')
+                        $("#send_code").text(time + 's');
                         var interval = setInterval(() => { //箭头函数
                             if (time <= 0 ){
                                 clearInterval(interval);
-                                $(this).removeClass('disabled');
-                                $(this).attr('disabled',false);
-                                $(this).text('发送验证码')
+                                $("#send_code").removeClass('disabled');
+                                $("#send_code").attr('disabled',false);
+                                $("#send_code").text('发送验证码')
                             }
                             else{
                                 time --;
-                                $(this).text(time + 's');
+                                $("#send_code").text(time + 's');
                             }
 
                         },1000)

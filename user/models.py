@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     nickname = models.CharField(max_length=20,verbose_name='昵称')
-    Avatar = models.ImageField(upload_to='avatar/%Y%m%d/',blank=True)
-
+    avatar = models.ImageField(upload_to='avatar/',blank=True)
     def __str__(self):
         return '<Profile: %s for %s>' %(self.nickname,self.user.username)
 
@@ -27,7 +26,7 @@ def get_avatar(self):
     if Profile.objects.filter(user=self).exists():
         profile = Profile.objects.get(user=self)
         try:
-            return profile.Avatar.url
+            return profile.avatar.url
         except:
             return "/media/default/unlogin.png"
 
