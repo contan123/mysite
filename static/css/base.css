@@ -66,6 +66,7 @@
 
  div.blog-move{
      transition: 0.4s;
+     min-height: calc(100vh - 50px);
  }
 .navbar-rightside{
     width: 15%;
@@ -80,4 +81,19 @@
 }
 ::-webkit-scrollbar {
   display: none; /* Chrome Safari */
+}
+
+div.footer{
+    height: 50px;
+    width: 100%;
+    background-color: #eee;
+    color: #555;
+
+}
+
+div.website-info{
+    text-align: center;
+}
+div.website-info p{
+    margin: 0;
 }

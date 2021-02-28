@@ -138,12 +138,16 @@
     <div class="w-100 my-menu active-cont" id="div-menu-btn">
         <button class="btn my-4" id="menu-btn">Menu</button>
     </div>
+
+
     {% block content %}{% endblock %}
 
-
-
-
-
+    <div class="footer" id="footer">
+        <div class="website-info">
+            <p>假装已经有了备案-_-p Copyright©2021 By CContan 版权所有</p>
+            <p>PowerBy Django</p>
+        </div>
+    </div>
 
 
     <!-- Modal -->
@@ -160,7 +164,6 @@
         </div>
     </div>
 
-     <foot></foot>
     {% if messages  %}
     <script>
          {% for msg in messages %}
@@ -204,25 +207,18 @@
          };
 
          window.addEventListener('resize',function(){
-             var target = this;
-             if (target.resizeFlag) {
-                 clearTimeout(target.resizeFlag);
-             };
-
-             target.resizeFlag = setTimeout(function() {
-                 callback();
-                 target.resizeFlag = null;
-             }, 10000);
-             //防止检测多次导致抽搐
-
              var t = blog_list_card.getBoundingClientRect().left;
-             if(t < 250){
+             if(t <= 250){
                  sidebar.classList.add("active-nav");
                  div_menu_btn.classList.remove("active-cont");
+                 blog_list_card.classList.remove("active-cont")
              }
              else if(hasClass(sidebar,"active-nav")&& t>250){
                  sidebar.classList.toggle("active-nav");
                  div_menu_btn.classList.toggle("active-cont");
+             }
+             else{
+                 blog_list_card.classList.remove("active-cont")
              }
              if(right_sidebar){
                  if(right_sidebar.getBoundingClientRect().left<1400) {
