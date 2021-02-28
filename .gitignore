@@ -3,3 +3,5 @@ settings.py
 __pycache__/
 media/
 .idea/
+settings/
+local.py

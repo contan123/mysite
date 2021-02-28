@@ -46,7 +46,7 @@ div.blog-detail-content{
     text-indent: 2em;
     height: 100%;
     width: 100%;
-    margin-top: 1em;
+    padding: 1em;
 }
 
 div.blog h3{
