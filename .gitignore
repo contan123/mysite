@@ -3,3 +3,4 @@ __pycache__/
 media/
 .idea/
 local.py
+static_collected/
