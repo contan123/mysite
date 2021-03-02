@@ -5,7 +5,7 @@ div.side-card span{
     padding: 5px;
     color: rgba(76,76,76,0.71);
     background-color: rgba(140,140,140,0.2);
-    font-size: 14px;
+    font-size: 10px;
     padding-right: 10px;
     display : inline-block ;
     white-space : nowrap ;
@@ -70,9 +70,7 @@ ul.blog-detail-info li{
     display : inline-block ;
     white-space : nowrap ;
 }
-div.sidecard{
-    position: fixed;
-}
+
 p.blog-info{
     margin-bottom: 0px;
 }

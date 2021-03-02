@@ -57,7 +57,7 @@
      </nav>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-9 offset-md-2 col-lg-10 offset-lg-1 blog-move" id="blog-move" >
+            <div class="blog-move" id="blog-move">
                 <div class="card blog-list-card" >
                     <div class="card-header" style="border-radius: 10px;margin-bottom: 45px;">{% block blog_list_title %}总列表:(共有{{ page_of_blogs.paginator.count }} 篇){% endblock %}</div>
                         {% for blog in blogs %}

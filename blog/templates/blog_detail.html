@@ -38,7 +38,6 @@
                  <h4 class="text-center">标签</h4>
                  <div class="card-body side-card border-top" >
                       {% for blog_type in blog_types %}
-
                           <a class="text-decoration-none" href="{% url 'blogs_with_type' blog_type.id%}">
                               <span>{{ blog_type }}({{ blog_type.blog_count }})</span>
                           </a>
@@ -59,9 +58,9 @@
 
          </ul>
      </nav>
-    <div class="container">
+    <div class="container " >
         <div class="row">
-            <div class="col-xs-12 col-sm-10 offset-sm-2 col-md-8 offset-md-2 col-lg-8 offset-lg-2 blog-move" id="blog-move">
+            <div class="blog-move"  id="blog-move">
                 <div class="card blog-content-card">
                     <h3>{{ blog.title }}</h3>
                     <ul class="blog-info-description">

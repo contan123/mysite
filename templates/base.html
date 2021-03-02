@@ -145,7 +145,7 @@
     <div class="footer" id="footer">
         <div class="website-info">
             <p>假装已经有了备案-_-p Copyright©2021 By CContan 版权所有</p>
-            <p>PowerBy Django</p>
+            <p>PoweredBy Django</p>
         </div>
     </div>
 
@@ -186,21 +186,22 @@
          var right_sidebar=document.querySelector("#rightsidebar");
 
          window.onload=function () {
+
              var t = blog_list_card.getBoundingClientRect().left;
-             if(t < 250){
+             if(t < sidebar.getBoundingClientRect().right){
                  sidebar.classList.add("active-nav");
                  div_menu_btn.classList.remove("active-cont");
              }
-             else if(hasClass(sidebar,"active-nav")&& t>250){
-                 sidebar.classList.toggle("active-nav");
-                 div_menu_btn.classList.toggle("active-cont");
+             else if(hasClass(sidebar,"active-nav")&& t>sidebar.getBoundingClientRect().right+300){
+                 sidebar.classList.remove("active-nav");
+                 div_menu_btn.classList.add("active-cont");
              }
 
              if(right_sidebar){
-                 if(right_sidebar.getBoundingClientRect().left<1400) {
+                 if(right_sidebar.getBoundingClientRect().left<blog_list_card.getBoundingClientRect().right) {
                      right_sidebar.classList.add("visually-hidden")
                  }
-                 else if(right_sidebar.getBoundingClientRect().left>1600){
+                 else if(right_sidebar.getBoundingClientRect().left>blog_list_card.getBoundingClientRect().right+250){
                      right_sidebar.classList.remove("visually-hidden")
                  }
              }
@@ -208,23 +209,23 @@
 
          window.addEventListener('resize',function(){
              var t = blog_list_card.getBoundingClientRect().left;
-             if(t <= 250){
+             if(t < sidebar.getBoundingClientRect().right){
                  sidebar.classList.add("active-nav");
                  div_menu_btn.classList.remove("active-cont");
                  blog_list_card.classList.remove("active-cont")
              }
-             else if(hasClass(sidebar,"active-nav")&& t>250){
-                 sidebar.classList.toggle("active-nav");
-                 div_menu_btn.classList.toggle("active-cont");
+             else if(hasClass(sidebar,"active-nav")&& t>sidebar.getBoundingClientRect().right+300){
+                 sidebar.classList.remove("active-nav");
+                 div_menu_btn.classList.add("active-cont");
              }
              else{
                  blog_list_card.classList.remove("active-cont")
              }
              if(right_sidebar){
-                 if(right_sidebar.getBoundingClientRect().left<1400) {
+                 if(right_sidebar.getBoundingClientRect().left<blog_list_card.getBoundingClientRect().right) {
                      right_sidebar.classList.add("visually-hidden")
                  }
-                 else if(right_sidebar.getBoundingClientRect().left>1600){
+                 else if(right_sidebar.getBoundingClientRect().left>blog_list_card.getBoundingClientRect().right+250){
                      right_sidebar.classList.remove("visually-hidden")
                  }
              }
