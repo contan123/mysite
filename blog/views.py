@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import Blog,BlogType
+from .models import Blog,BlogType,Project
 from django.core.paginator import Paginator
 from mysite.settings.base import SETTING_PER_PAGE_NUMBER
 from blog.utills import create_page_list,read_statistics_once_read,get_month_hot_data
@@ -20,12 +20,11 @@ def get_blogs(request,blog):
     context['page_list'] = page_list #跳转
     context['blogs'] = page_of_blogs.object_list
     context['page_of_blogs'] = page_of_blogs
-    context['blog_types'] = BlogType.objects.annotate(blog_count=Count('blog'))  # BlogType关联Blog 计数Blog
+    context['blog_types'] = BlogType.objects.exclude(type_name__in=['学习记录']).annotate(blog_count=Count('blog'))  # BlogType关联Blog 计数Blog
     dates = Blog.objects.dates('created_time', 'month', order='DESC')
     dates_count = [Blog.objects.filter(created_time__year=i.year,created_time__month =i.month).count() for i in dates]
     context['hot_data'] = get_month_hot_data()
     context['blog_dates'] = [(dates[i],dates_count[i]) for i in range(len(dates_count))]
-
     return context
 
 def blog_list(request):
@@ -62,3 +61,7 @@ def blog_with_date(request,year,month):
     context = get_blogs(request,Blog.objects.filter(created_time__year=year,created_time__month=month))
     context['blog_date'] = '%s年%s月' % (year, month)
     return render(request, 'blog_with_date.html', context)
+
+def blog_project_list(request):
+    context = get_blogs(request,Project.objects.all())
+    return render(request, 'blog_project_list.html', context)
