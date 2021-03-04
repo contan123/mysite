@@ -40,6 +40,7 @@ div.blog{
     padding-bottom: 1em;
     border-bottom: 1px solid #eee;
     border-radius: 10px;
+
 }
 
 div.blog-detail-content{
@@ -156,3 +157,4 @@ img.round_icon_little{
  .filp-button:hover{
      background-color: #e4e4e4;
  }
+
