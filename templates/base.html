@@ -192,7 +192,6 @@
 
              var t = blog_list_card.getBoundingClientRect().left;
              if(t < sidebar.getBoundingClientRect().right){
-                 alert(t)
                  sidebar.classList.add("active-nav");
                  div_menu_btn.classList.remove("active-cont");
              }
@@ -222,9 +221,7 @@
                  sidebar.classList.remove("active-nav");
                  div_menu_btn.classList.add("active-cont");
              }
-             else{
-                 blog_list_card.classList.remove("active-cont")
-             }
+
              if(right_sidebar){
                  if(right_sidebar.getBoundingClientRect().left<blog_list_card.getBoundingClientRect().right) {
                      right_sidebar.classList.add("visually-hidden")
