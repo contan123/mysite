@@ -12,8 +12,6 @@
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 
 
-
-
     {% block header_extends %}{% endblock %}
     {% block jq %}{% endblock %}
 
@@ -189,7 +187,8 @@
          var right_sidebar=document.querySelector("#rightsidebar");
 
          window.onload=function () {
-
+             sidebar.style.transition = '0s';
+             div_menu_btn.style.transition = '0s';
              var t = blog_list_card.getBoundingClientRect().left;
              if(t < sidebar.getBoundingClientRect().right){
                  sidebar.classList.add("active-nav");
@@ -199,7 +198,9 @@
                  sidebar.classList.remove("active-nav");
                  div_menu_btn.classList.add("active-cont");
              }
-
+             else if(hasClass(blog_list_card,'active-cont')&& t>sidebar.getBoundingClientRect().right){
+                 blog_list_card.classList.remove("active-cont")
+             }
              if(right_sidebar){
                  if(right_sidebar.getBoundingClientRect().left<blog_list_card.getBoundingClientRect().right) {
                      right_sidebar.classList.add("visually-hidden")
@@ -208,6 +209,8 @@
                      right_sidebar.classList.remove("visually-hidden")
                  }
              }
+             sidebar.style.transition = '0.4s';
+             div_menu_btn.style.transition = '0.4s';
          };
 
          window.addEventListener('resize',function(){
@@ -220,6 +223,10 @@
              else if(hasClass(sidebar,"active-nav")&& t>sidebar.getBoundingClientRect().right+300){
                  sidebar.classList.remove("active-nav");
                  div_menu_btn.classList.add("active-cont");
+             }
+             else if(hasClass(blog_list_card,'active-cont')&& t>sidebar.getBoundingClientRect().right){
+                 blog_list_card.classList.remove("active-cont")
+                 right_sidebar.classList.remove("visually-hidden")
              }
 
              if(right_sidebar){
