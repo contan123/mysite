@@ -1,7 +1,8 @@
   *{
         margin: 0;
         padding: 0;
-      box-sizing: border-box;
+        box-sizing: border-box;
+        scrollbar-width: none;
     }
   body
   {
@@ -94,6 +95,7 @@ div.footer{
 div.website-info{
     text-align: center;
 }
+
 div.website-info p{
     margin: 0;
 }
