@@ -50,11 +50,13 @@
                             <div class="card-body">
                                     <div class="row mx-1 mt-3">
                                         <div>
-                                            {% if user.is_authenticated%}
-                                                <img src="{{ request.user.get_avatar }}" class="round_icon" alt="">
-                                            {% else %}
-                                                <img src="/media/default/unlogin.png" class="round_icon" alt="">
-                                            {% endif %}
+                                                <div class="avater">
+                                                {% if user.is_authenticated%}
+                                                    <img src="{{ request.user.get_avatar }}" class="round_icon" alt="">
+                                                {% else %}
+                                                    <img src="/media/default/unlogin.png" class="round_icon" alt="">
+                                                {% endif %}
+                                                </div>
                                             <form  action="{% url 'submit_comment' %}" id="comment_form" novalidate method="post" style="overflow: hidden">
                                                 {% csrf_token %}
                                                 {% for field in comment_form %}
