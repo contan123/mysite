@@ -17,7 +17,7 @@ def get_blogs(request,blog):
     page_of_blogs = paginator.get_page(page_num)  # 默认或异常为1
     page_list = create_page_list(current_page=page_of_blogs.number, all_page_len=paginator.num_pages)
     context = {}
-    context['page_list'] = page_list #跳转
+    context['page_list'] = page_list
     context['blogs'] = page_of_blogs.object_list
     context['page_of_blogs'] = page_of_blogs
     context['blog_types'] = BlogType.objects.exclude(type_name__in=['学习记录']).annotate(blog_count=Count('blog'))  # BlogType关联Blog 计数Blog
@@ -48,7 +48,7 @@ def blog_detail(request,blog_pk):
     context['hot_data'] = get_month_hot_data()
     context['blog_dates'] = [(dates[i], dates_count[i]) for i in range(len(dates_count))]
     response = render(request, 'blog_detail.html', context)
-    response.set_cookie(read_cookie_key,'True',max_age=6000)
+    response.set_cookie(read_cookie_key,'True',max_age=72000)
     return response
 
 def blogs_with_type(request,blog_type_pk):
