@@ -145,7 +145,7 @@
 
     <div class="footer" id="footer">
         <div class="website-info">
-            <p>假装已经有了备案-_-p Copyright©2021 By CContan 版权所有</p>
+            <p><a href="https://beian.miit.gov.cn" style="color: #0f0f0f;text-decoration: none;">苏ICP备2021009502号-1</a> Copyright©2021 By CContan 版权所有</p>
             <p>PoweredBy Django</p>
         </div>
     </div>
@@ -199,7 +199,7 @@
                  div_menu_btn.classList.add("active-cont");
              }
              else if(hasClass(blog_list_card,'active-cont')&& t>sidebar.getBoundingClientRect().right){
-                 blog_list_card.classList.remove("active-cont")
+                 blog_list_card.classList.remove("active-cont");
              }
              if(right_sidebar){
                  if(right_sidebar.getBoundingClientRect().left<blog_list_card.getBoundingClientRect().right) {
@@ -255,6 +255,7 @@
 
 
 </body>
+
 <script type="text/javascript">
 
         $("#send_code").click(function () {

@@ -85,6 +85,7 @@
 }
 
 div.footer{
+    min-height: 50px;
     height: auto;
     width: 100%;
     background-color: #eee;
@@ -98,4 +99,17 @@ div.website-info{
 
 div.website-info p{
     margin: 0;
+}
+
+.catalog-h2 {
+	margin-left: 1em;
+}
+.catalog-h2 {
+	margin-left: 1em;
+}
+.catalog-h3 {
+	margin-left: 2em;
+}
+.catalog-h4 {
+	margin-left: 3em;
 }

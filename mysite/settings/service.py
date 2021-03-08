@@ -24,7 +24,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['47.98.149.184']
+ALLOWED_HOSTS = ['47.98.149.1','consite.cn','www.consite.cn']
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

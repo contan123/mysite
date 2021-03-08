@@ -48,7 +48,7 @@ def blog_detail(request,blog_pk):
     context['hot_data'] = get_month_hot_data()
     context['blog_dates'] = [(dates[i], dates_count[i]) for i in range(len(dates_count))]
     response = render(request, 'blog_detail.html', context)
-    response.set_cookie(read_cookie_key,'True',max_age=60)
+    response.set_cookie(read_cookie_key,'True',max_age=6000)
     return response
 
 def blogs_with_type(request,blog_type_pk):

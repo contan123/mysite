@@ -158,3 +158,21 @@ img.round_icon_little{
      background-color: #e4e4e4;
  }
 
+ .catalogs{
+     position: fixed;
+     flex: 0 0 auto;
+     width: 25%;
+ }
+ .catalog{
+     margin-bottom: 10px;
+ }
+
+ .catalog a{
+     text-decoration: none;
+     color: #0f0f0f;
+ }
+
+ .catalog-active>a{
+     border-bottom: 0.25rem solid;
+     color: deepskyblue;
+ }
