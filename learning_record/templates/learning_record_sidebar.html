@@ -1,0 +1,23 @@
+{% extends 'templates/../base.html' %}
+{% block title%}CContan的博客{% endblock %}
+
+{% load static %}
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+     <nav class="navbar navbar-rightside navbar-expand d-flex flex-column" id="rightsidebar">
+         <ul class="navbar-nav d-flex flex-column mt-2 w-100 mx-2">
+             <li class="text-center border-bottom pb-4 mb-2">{{ course }}</li>
+             {% for lesson in lessons %}
+             <li><a href="{% url 'lesson' lesson.pk %}" class="lessons">{{ lesson.title }}</a></li>
+             {% endfor %}
+         </ul>
+     </nav>
+{% block learning_record_sidebar_content %}{% endblock %}
+{% endblock %}
+
+{% block script_extend %}
+    {% block learning_record_sidebar_script_extend%}{% endblock %}
+{% endblock %}

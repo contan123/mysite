@@ -181,3 +181,8 @@ img.round_icon_little{
      max-width: 75px;
      max-height: 75px;
  }
+ .lessons{
+     text-decoration: none;
+     color: rgba(0,0,0,0.42);
+     margin-left: 1em;
+ }

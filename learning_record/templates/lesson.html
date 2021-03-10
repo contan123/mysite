@@ -1,51 +1,39 @@
-{% extends 'templates/../sidebar.html' %}
-{% load static %}
-{% block header_extends %}
-    <script src="{% static 'prism/lib/prism/prism_patched.min.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'prism/prism.css' %}">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-{% endblock %}
+{% extends 'templates/../learning_record_sidebar.html' %}
 
-{% block title %} {{ blog.title }}{% endblock %}
-{% block nav_blog_list_active%} active {% endblock %}
-
-
-{% block sidebar_content %}
-    <div class="container">
+{% block learning_record_sidebar_content %}
+<div class="container">
         <div class="row">
             <div class="blog-move"  id="blog-move">
 
-                    <div class="card catalogs card blog-content-card  px-1" id="catalogs">
+                    <div class="catalogs card blog-content-card  px-1" id="catalogs">
                         <p style="border-bottom: 1px solid;font-size: 24px;">目录</p>
                     </div>
 
                     <div class="card blog-content-card offset-3 col-9" id="content">
-                        <h1>{{ blog.title }}</h1>
+                        <h1>{{ lesson.title }}</h1>
                         <ul class="blog-info-description">
-                            <li>作者:{{ blog.author.get_nickname }}</li>
-                            <li>发表日期:{{ blog.created_time|date:'Y-m-d' }}</li>
-                            <li>分类:<a href="{% url 'blogs_with_type' blog.blog_type_id%}" class="text-decoration-none">{{ blog.blog_type }}</a></li>
-                            <li>阅读数:{{ blog.search_readnum }}</li>
+                            <li>作者:{{ lesson.author.get_nickname }}</li>
+                            <li>发表日期:{{ lesson.created_time|date:'Y-m-d' }}</li>
+                            <li>阅读数:{{ lesson.search_readnum }}</li>
                         </ul>
-                        <div class="blog-content">{{ blog.content|safe }}</div>
+                        <div class="blog-content">{{ lesson.content|safe }}</div>
                         <div class="blog-pre-next">
                             <div class="float-start d-flex flex-row">
-                                {% if previous_blog %}
-                                    <a href="{% url 'blog_deatil' previous_blog.id %}" class="text-decoration-none btn filp-button" name="up">上一篇</a>
+                                {% if previous_lesson %}
+                                    <a href="{% url 'lesson' previous_lesson.id %}" class="text-decoration-none btn filp-button">上一篇</a>
                                 {% else %}
                                     <a href="#" class="text-decoration-none btn filp-button">暂无</a>
                                 {% endif %}
                             </div>
                             <div class="float-end">
-                                {% if next_blog %}
-                                    <a href="{% url 'blog_deatil' next_blog.id %}" class="text-decoration-none btn filp-button">下一篇</a>
+                                {% if next_lesson %}
+                                    <a href="{% url 'lesson' next_lesson.id %}" class="text-decoration-none btn filp-button">下一篇</a>
                                 {% else %}
                                     <a href="#" class="text-decoration-none btn filp-button">暂无</a>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
-
                     <div class="card offset-3 col-9 mb-4">
                             <div class="card-body">
                                     <div class="row mx-1 mt-3">
@@ -80,18 +68,14 @@
                                     </div>
                                 </div>
                     </div>
+
             </div>
         </div>
     </div>
-
-
-
-
-    </div>
 {% endblock %}
 
-{% block script_extend %}
-    <script type="text/javascript">
+{% block learning_record_sidebar_script_extend%}
+        <script type="text/javascript">
         $("#comment_form").submit(function(event){
             //异步提交
             $.ajax({
@@ -174,4 +158,3 @@
 
     </script>
 {% endblock %}
-

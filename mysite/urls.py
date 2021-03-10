@@ -26,6 +26,7 @@ urlpatterns = [
     path('blog/',include('blog.urls')), #blog 文件夹的 urls路由 以blog传入参数
     path('comment/',include('comment.urls')),
     path('user/',include('user.urls')),
+    path('learning_record/',include('learning_record.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
