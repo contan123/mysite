@@ -7,11 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <link rel="stylesheet" href="/static/css/base.css"><link rel="stylesheet" href="/static/css/base.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="shortcut icon" href="{% static 'fa.ico' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
-
 
     {% block header_extends %}{% endblock %}
     {% block jq %}{% endblock %}
@@ -71,6 +70,9 @@
              </li>
              <li class="nav-item w-100">
                  <a class="nav-link" href="{% url 'course_list' %}">学习记录</a>
+             </li>
+             <li class="nav-item w-100">
+                 <a class="nav-link" href="{% url 'health_form' %}">小工具</a>
              </li>
          </ul>
 
@@ -149,8 +151,11 @@
 
     <div class="footer" id="footer">
         <div class="website-info">
-            <p><a href="https://beian.miit.gov.cn" style="color: #0f0f0f;text-decoration: none;">苏ICP备2021009502号-1</a> Copyright©2021 By CContan 版权所有</p>
-            <p>PoweredBy Django</p>
+            <a href="https://beian.miit.gov.cn" style="color: #0f0f0f;text-decoration: none;">苏ICP备2021009502号-1</a>
+            <img src="/media/备案.png">
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32050702010975" style="color: #0f0f0f;text-decoration: none;">苏公网安备 32050702010975号</a>
+            <p>Copyright©2021 By CContan 版权所有</p>
+            <p>PoweredBy Django 联系邮箱3143790685@qq.com</p>
         </div>
     </div>
 
@@ -259,7 +264,7 @@
 
 
 </body>
-
+<!--发送邮件-->
 <script type="text/javascript">
 
         $("#send_code").click(function () {

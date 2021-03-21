@@ -27,6 +27,7 @@ urlpatterns = [
     path('comment/',include('comment.urls')),
     path('user/',include('user.urls')),
     path('learning_record/',include('learning_record.urls')),
+    path('school_health_form/',include('school_health_form.urls')),
 ]
-
+#管理静态文件
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

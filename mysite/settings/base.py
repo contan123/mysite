@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'read_statistics',
     'user',
     'learning_record',
+    'school_health_form',
 ]
 
 MIDDLEWARE = [

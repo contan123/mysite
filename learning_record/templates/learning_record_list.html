@@ -7,6 +7,7 @@
 {% endblock %}
 {% block sidebar_content %}
     <div class="container">
+        <div class="row">
                 <div class="card blog-list-card blog-move offset-sm-0 col-sm-12 offset-lg-2 col-lg-8 offset-xxl-0 col-xxl-12" id="blog-move">
                     <div class="card-header" style="border-radius: 10px;margin-bottom: 45px;">{% block blog_list_title %}列表:(共有{{ page_of_blogs.paginator.count }} 个){% endblock %}</div>
                     <div style="display: flex;flex-wrap: wrap;">
@@ -64,5 +65,7 @@
                         </ul>
                     </nav> <!-- 分页结束-->
         </div>
+    </div>
+
     </div>
 {% endblock %}

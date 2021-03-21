@@ -186,3 +186,14 @@ img.round_icon_little{
      color: rgba(0,0,0,0.42);
      margin-left: 1em;
  }
+ .healthform{
+     margin-top: 50px;
+     margin-bottom: 50px;
+ }
+ .healthform-list{
+     list-style-type: none;
+     margin-top: 40px;
+ }
+.healthform-list p{
+    margin-bottom: 8px
+}

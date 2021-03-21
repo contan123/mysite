@@ -7,30 +7,28 @@
     <div class="container">
         <div class="offset-lg-3 col-lg-6 mt-4 blog-move" id="blog-move">
             <div class="card">
-            <div class="row mx-1 mt-2">
+                <div class="row mx-1 mt-2">
                     {% if user.is_authenticated %}
-                        <div class="">
-                            <div class="float-start d-flex flex-column">
-                                <a href="{% url 'change_avater' %}?from={{ request.get_full_path }}">
-                                <img src="{{ request.user.get_avatar }}" alt="" class="round_icon">
-                                </a>
-                            </div>
-                            <div>
+                        <div class="float-start h-25 w-25">
+                            <a href="{% url 'change_avater' %}?from={{ request.get_full_path }}">
+                            <img src="{{ request.user.get_avatar }}" alt="" class="round_icon">
+                            </a>
                             <h2>{{ user.username }}</h2>
-                                <ul class="user_info px-0">
-                                    <li>昵称:{{ user.get_nickname  }} <a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}">修改昵称</a></li>
-                                    <li>邮箱:
-                                        {% if user.email %}
-                                            {{ user.email }}
-                                        {% else %}
-                                            未绑定
-                                            <a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">绑定邮箱</a>
-                                        {% endif %}
+                        </div>
+                        <div class="float-end">
+                            <ul class="user_info px-0">
+                                <li>昵称:{{ user.get_nickname  }} <a href="{% url 'change_nickname' %}?from={{ request.get_full_path }}">修改昵称</a></li>
+                                <li>邮箱:
+                                    {% if user.email %}
+                                        {{ user.email }}
+                                    {% else %}
+                                        未绑定
+                                        <a href="{% url 'bind_email' %}?from={{ request.get_full_path }}">绑定邮箱</a>
+                                    {% endif %}
 
-                                    </li>
-                                    <li>上次登录的时间:{{ user.last_login|date:'Y-m-d H:i:s' }}</li>
-                                </ul>
-                            </div>
+                                </li>
+                                <li>上次登录的时间:{{ user.last_login|date:'Y-m-d H:i:s' }}</li>
+                            </ul>
                         </div>
                     {% else %}
                                 <spawn>未登录,跳转到首页....</spawn>
@@ -38,7 +36,7 @@
                                     window.location.href='/'
                                 </script>
                     {% endif %}
-            </div>
+                </div>
             </div>
         </div>
     </div>

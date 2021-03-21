@@ -1,0 +1,197 @@
+{% extends 'templates/../base.html' %}
+{% block title%}CContan的博客{% endblock %}
+
+{% load static %}
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <script type="text/javascript" src="{% static 'js/rsa.js'%}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+                <div class="card healthform offset-sm-0 col-sm-12 offset-lg-2 col-lg-8 offset-xxl-2 col-xxl-8 blog-move " id="blog-move" style="min-width: 666px;">
+                    <div class="row h-100">
+                        <div class="col-4 border-end overflow-auto">
+                                <h2 class="text-center mt-4 ">南信院</h2>
+                                <h2 class="text-center mt-4 ">校内健康信息填报</h2>
+                                <h3 class="text-center">食用指南</h3>
+                                <h4 class="text-center mt-5">录入数据</h4>
+                                <p>1)按顺序填报</p>
+                                <p>2)点击查询是否有效按钮</p>
+                                <p>3)保存</p>
+                                <h4 class="text-center">更改数据</h4>
+                                <p>1)输入学号</p>
+                                <p>2)点击查询数据按钮</p>
+                                <p>3)修改数据并保存</p>
+                                <h4 class="text-center">注意事项</h4>
+                                <p>0)请务必填写正确信息</p>
+                                <p>1)密码经过加密，安心使用</p>
+                                <p>2)如返回”发送错误，请重试“可能是服务器问题，多试几次</p>
+                                <p>3)点击查询是否有效按钮后，数据不会保存到数据库，请手动点击修改或保存按钮</p>
+                                <p>4)自动填报时间约为每日7点，有概率失效。若失效，12点前会人工启动填报序列。</p>
+                                <p>5)填报地点一律为宿舍</p>
+                                <p>6)技术有限，本博客移动端布局很奇怪</p>
+                        </div>
+                        <div class="col-8 healthform-list text-center">
+                            <form action="" method="POST" id = 'healthfrom'>
+                                {% csrf_token %}
+                                <p>学号</p><input type="text" class="form-control w-auto d-inline" name="username" id="username">
+                                <button class="btn btn-outline-primary float-end mx-4 position-absolute" id="find">查询数据</button>
+                               <p>姓名</p> <input type="text" class="form-control w-auto d-inline" name="name" id="name">
+
+                                <p>密码</p><input type="text" class="form-control w-auto d-inline" name="password" id="password">
+
+                                <p>学院</p><input type="text" class="form-control w-auto d-inline" name="XY" id= "XY">
+
+                                <p>班级</p><input type="text" class="form-control w-auto d-inline" name="BJ" id = 'BJ'>
+
+                                <p>宿舍号</p><input type="text" class="form-control w-auto d-inline" name="SSH" id = 'SSH'>
+
+                                <p>辅导员</p><input type="text" class="form-control w-auto d-inline" name="FDY" id = 'FDY'>
+
+
+                                <span id='error_tip_username' class="text-danger d-block"></span>
+                                <div class="mt-4 mb-4">
+                                <button class="btn btn-primary " id = verify>查询是否有效</button>
+                                <button class="btn btn-primary " disabled="disabled" id = "healthform_create">创建</button>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div><!--内容结束-->
+                </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script_extend %}
+    <!--业务逻辑-->
+    <script type="text/javascript">
+        $("#find").click(function (event) {
+            var username = $('#username').val();
+            if(username==''){
+                $("#error_tip_username").text('*学号不能为空')
+                return false;
+            }
+            $.ajax({
+                url:"{% url 'find' %}",
+                type: 'GET',
+                data:{
+                    'username':username
+                },
+                cache:false,
+                success:function (data) {
+                    if (data['status']!='SUCCESS'){
+                        $("#error_tip_username").text(data['info'])
+                    }
+                    else{
+                        $("#error_tip_username").text('');
+                        $("#healthform_create").text('修改');
+                        $("#name").attr('placeholder',data['name']);
+                        $("#password").attr('placeholder',data['password']);
+                        $("#XY").attr('placeholder',data['XY']);
+                        $("#BJ").attr('placeholder',data['BJ']);
+                        $("#SSH").attr('placeholder',data['SSH']);
+                        $("#FDY").attr('placeholder',data['FDY']);
+                        $("#username").attr('readonly',"readonly");
+                    }
+                }
+            })
+        event.preventDefault();
+        });
+
+        $("#healthform_create").click(function (event) {
+            var username = $('#username').val();
+            $.ajax({
+                url:"{% url 'save' %}",
+                type: 'GET',
+                data:{
+                    'username':username,
+                    'name':$("#name").val(),
+                    'password':encryptedPwd(t,"010001",$("#password").val()),
+                    'XY':$("#XY").val(),
+                    'BJ':$("#BJ").val(),
+                    'SSH':$("#SSH").val(),
+                    'FDY':$("#FDY").val(),
+                },
+                cache:false,
+                success:function (data) {
+                    if (data['status']!='SUCCESS'){
+                        alert(data['info'])
+                    }
+                    else{
+                        alert(data['info'])
+                        $("#name").val('');
+                        $("#password").val('');
+                        $("#XY").val('');
+                        $("#BJ").val('');
+                        $("#SSH").val('');
+                        $("#FDY").val('');
+                        $.ajax({
+                            url:"{% url 'find' %}",
+                            type: 'GET',
+                            data:{
+                                'username':username
+                            },
+                            cache:false,
+                            success:function (data) {
+                                if (data['status']!='SUCCESS'){
+                                    $("#error_tip_username").text(data['info'])
+                                }
+                                else{
+                                    $("#error_tip_username").text('');
+                                    $("#healthform_create").text('修改');
+                                    $("#name").attr('placeholder',data['name']);
+                                    $("#password").attr('placeholder',data['password']);
+                                    $("#XY").attr('placeholder',data['XY']);
+                                    $("#BJ").attr('placeholder',data['BJ']);
+                                    $("#SSH").attr('placeholder',data['SSH']);
+                                    $("#FDY").attr('placeholder',data['FDY']);
+                                }
+                            }
+                        })
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            })
+        event.preventDefault();});
+
+        $("#verify").click(function (event) {
+            var username = $('#username').val();
+            $.ajax({
+                url:"{% url 'verify' %}",
+                type: 'GET',
+                data:{
+                    'username':username,
+                    'name':$("#name").val(),
+                    'password':encryptedPwd(t,"010001",$("#password").val()),
+                    'XY':$("#XY").val(),
+                    'BJ':$("#BJ").val(),
+                    'SSH':$("#SSH").val(),
+                    'FDY':$("#FDY").val(),
+                },
+                cache:false,
+                success:function (data) {
+                    if (data['status']!='SUCCESS'){
+                        alert(data['info'])
+                    }
+                    else{
+                        $("#healthform_create").attr('disabled',false);
+                        alert(data['info'])
+                    }
+                }
+            })
+        event.preventDefault();
+        });
+    </script>
+
+
+{% endblock %}
+
+

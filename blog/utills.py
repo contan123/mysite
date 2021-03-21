@@ -30,31 +30,32 @@ def create_page_list(current_page,all_page_len):
 def read_statistics_once_read(request,obj):
     ct = ContentType.objects.get_for_model(obj)
     key = "%s_%s_read" % (ct.model,obj.pk)
-    if not request.COOKIES.get(key):
-        #总阅读数+1
-        """
-        if BlogReadNum.objects.filter(content_type=ct,object_id=obj.pk).count() != 0:
-            readnum = BlogReadNum.objects.get(content_type=ct,object_id=obj.pk)
-        else:
-            readnum = BlogReadNum(content_type=ct,object_id=obj.pk)
-            可用get_or_create替代 返回(对象,是否为创建TRUE/FALSE)元组
-        """
-        readnum,created = BlogReadNum.objects.get_or_create(content_type=ct,object_id=obj.pk)
-        readnum.read_num += 1
-        readnum.save()
+    if request.user != obj.author:
+        if not request.COOKIES.get(key):
+            #总阅读数+1
+            """
+            if BlogReadNum.objects.filte r(content_type=ct,object_id=obj.pk).count() != 0:
+                readnum = BlogReadNum.objects.get(content_type=ct,object_id=obj.pk)
+            else:
+                readnum = BlogReadNum(content_type=ct,object_id=obj.pk)
+                可用get_or_create替代 返回(对象,是否为创建TRUE/FALSE)元组
+            """
+            readnum,created = BlogReadNum.objects.get_or_create(content_type=ct,object_id=obj.pk)
+            readnum.read_num += 1
+            readnum.save()
 
-        #当天阅读+1
-        date=timezone.now().date()
+            #当天阅读+1
+            date=timezone.now().date()
 
-        """
-        if ReadDetail.objects.filter(content_type=ct,object_id=obj.pk,date=date).count():
-            readdetail=ReadDetail.objects.get(content_type=ct,object_id=obj.pk,date=date)
-        else:
-            readdetail = ReadDetail(content_type=ct,object_id=obj.pk,date=date)
-        """
-        readdetail,created = ReadDetail.objects.get_or_create(content_type=ct,object_id=obj.pk,date=date)
-        readdetail.read_num += 1
-        readdetail.save()
+            """
+            if ReadDetail.objects.filter(content_type=ct,object_id=obj.pk,date=date).count():
+                readdetail=ReadDetail.objects.get(content_type=ct,object_id=obj.pk,date=date)
+            else:
+                readdetail = ReadDetail(content_type=ct,object_id=obj.pk,date=date)
+            """
+            readdetail,created = ReadDetail.objects.get_or_create(content_type=ct,object_id=obj.pk,date=date)
+            readdetail.read_num += 1
+            readdetail.save()
     return key
 
 def get_week_read_data(content_type):

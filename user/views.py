@@ -19,11 +19,10 @@ def login(request):
     referer = request.META.get('HTTP_REFERER',reverse('home'))
     if user is not None:
         auth.login(request,user)
-        messages.success(request, '欢迎访问',)
-        return redirect(referer)
+        messages.success(request, '欢迎访问')
     else:
         messages.error(request,'用户名或密码错误')
-        return redirect(referer)
+    return redirect(referer)
 
 def logout(request):
     auth.logout(request)
@@ -45,8 +44,12 @@ def register(request):
         messages.error(request, '用户名已注册')
     elif re.search(r'\W',password1) != None:
         messages.error(request, '密码不能包含特殊字符')
+    elif len(password1) < 6 :
+        messages.error(request, '密码至少6位')
     elif password1!=password2:
         messages.error(request, '两次输入密码不一致')
+    elif re.search('[@163.com,@qq.com]',email):
+        messages.error(request,'只支持qq与163')
     elif request.session.get(email) != verification_code:
         messages.error(request, '验证码错误')
     else:
