@@ -12,6 +12,7 @@ from .forms import ChangeNicknameFrom,BindEmailForm
 from django.core.mail import send_mail
 from .forms import UserDetailForm
 from django.contrib.auth.decorators import login_required
+
 def login(request):
     username = request.POST.get('username','')
     password = request.POST.get('password','')
@@ -48,8 +49,6 @@ def register(request):
         messages.error(request, '密码至少6位')
     elif password1!=password2:
         messages.error(request, '两次输入密码不一致')
-    elif re.search('[@163.com,@qq.com]',email):
-        messages.error(request,'只支持qq与163')
     elif request.session.get(email) != verification_code:
         messages.error(request, '验证码错误')
     else:
@@ -141,19 +140,21 @@ def send_verification_code(request):
         send_code_time = request.session.get('send_code_time',0)
         if now - send_code_time <30:
             data['status'] = 'ERROR'
-
-        else:
-            #发送邮件
+        elif re.search('[@163.com,@qq.com]',email):
+            # 发送邮件
             request.session[email] = code
             request.session['send_code_time'] = now
             send_mail(
-                '绑定邮箱', #主题
+                '绑定邮箱',  # 主题
                 '验证码:%s' % code,
                 '3143790685@qq.com',
                 [email],
                 fail_silently=False,
             )
-            data['status']='SUCCESS'
+            data['status'] = 'SUCCESS'
+        else:
+            data['status'] = 'ERROR'
+            data['type'] = 'qq,163 only'
     else:
         data['status'] = 'ERROR'
     return JsonResponse(data)
