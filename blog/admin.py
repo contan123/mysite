@@ -16,4 +16,4 @@ class Blog(admin.ModelAdmin):
 @admin.register(Project)
 
 class Project(admin.ModelAdmin):
-    list_display = ('id','title','blog','image')
+    list_display = ('id','title','blog')

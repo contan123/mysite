@@ -24,7 +24,6 @@ class Blog(models.Model,ReadNumExpandMethod):
     blog_read_nums = GenericRelation(BlogReadNum)
     comments = GenericRelation(Comment)
     urls = models.URLField(blank=True)
-    images = models.ImageField(upload_to='blog_avater/', blank=True)
 
 
     def __str__(self):
@@ -36,7 +35,6 @@ class Blog(models.Model,ReadNumExpandMethod):
 class Project(models.Model):
     title = models.CharField(max_length=50)
     content = RichTextUploadingField()
-    image = models.ImageField(upload_to='blog_avater/', blank=True)
     urls = models.URLField(blank=True)
     blog = models.ForeignKey(Blog,on_delete=models.DO_NOTHING)
 

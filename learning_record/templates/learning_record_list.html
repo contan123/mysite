@@ -12,7 +12,7 @@
                     <div class="card-header" style="border-radius: 10px;margin-bottom: 45px;">{% block blog_list_title %}列表:(共有{{ page_of_blogs.paginator.count }} 个){% endblock %}</div>
                     <div style="display: flex;flex-wrap: wrap;">
                         {% for course in courses %}
-                                <div class="blog  offset-1 col-5" style="background-color: rgba(43,43,43,0.71);height: auto;background-image:url('/media/{{ blog.images }}');background-size:cover;box-shadow: 0 0 5px rgba(0,0,0,0.71);">
+                                <div class="blog  offset-1 col-5" style="background-color: rgba(43,43,43,0.71);height: auto;background-size:cover;box-shadow: 0 0 5px rgba(0,0,0,0.71);">
                                     <h3 class="text-light">{{ course.type_name }}</h3>
                                         <div class="text-center text-light" style="text-indent: 0">
                                             <p class="mb-0"> {{ course.content|safe|truncatechars:240 }}</p>
