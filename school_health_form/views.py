@@ -84,7 +84,6 @@ def verify(request):
             "XY": obj.XY,
             "BJ": obj.BJ,
         }
-        obj.delete()
         data = ver(user_1,data)
     else:
         data['status']='ERROR'
