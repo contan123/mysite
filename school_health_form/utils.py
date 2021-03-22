@@ -24,8 +24,6 @@ def ver(obj,date):
     ]
     head['User-Agent'] = random.choice(user_agent_list)
 
-    print('-'*1000)
-    print(obj)
     list = [obj]
 
     for i in list:
@@ -48,7 +46,7 @@ def ver(obj,date):
             }
 
             r = session.post(login_url, headers=head, data=postData)
-            print(r)
+
             time = datetime.date.today()
 
             name = i.get('name')

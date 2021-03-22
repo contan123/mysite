@@ -84,9 +84,8 @@ def verify(request):
             "XY": obj.XY,
             "BJ": obj.BJ,
         }
-        print(user_1)
-        data = ver(user_1,data)
         obj.delete()
+        data = ver(user_1,data)
     else:
         data['status']='ERROR'
         data['info']='用户未登录'
